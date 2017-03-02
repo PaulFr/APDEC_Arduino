@@ -13,7 +13,7 @@ Api::Api(Survey survey)
   byte mac[] = { 0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED };
   byte server[] = { 169,254,230,221};
 
-  Ethernet.begin(mac, _ip);
+  //Ethernet.begin(mac, _ip);
   /*delay(1000);*/
   Serial.println("connecting...");
 
@@ -30,12 +30,13 @@ void Api::getCurrentSurveyFromServer(){
   _performGet("/survey/current");
 }
 
-void Api::contributeToSurvey(int choice){
-  _performPost("/survey/"+String(_currentSurvey.getId())+"/contribute", String(choice));
+void Api::contributeToSurvey(int choice, String cardUid){
+  _performPost("/survey/"+String(_currentSurvey.getId())+"/contribute", "card="+cardUid+"&choice="+String(choice));
 }
 
 void Api::_performPost(String url, String data)
 {
+  Serial.println("Requete POST : "+url+" : "+data);
   _client.println("POST "+url+" HTTP/1.1");   
   _client.println("Host: 169.254.215.185");
   _client.println("Connection: close");
@@ -44,6 +45,7 @@ void Api::_performPost(String url, String data)
 }
 
 void Api::_performGet(String url){
+  Serial.println("Requete GET : "+url);
   _client.println("GET "+url+" HTTP/1.1");   
   _client.println("Host: 169.254.215.185");
   _client.println("Connection: close");

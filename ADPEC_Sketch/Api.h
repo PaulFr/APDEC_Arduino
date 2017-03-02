@@ -12,7 +12,7 @@ class Api
   public:
     Api(Survey survey);
     void getCurrentSurveyFromServer();
-    void contributeToSurvey(int choice);
+    void contributeToSurvey(int choice, String cardUid);
     void readResponse();
     boolean hasStatus();
     String getStatus();

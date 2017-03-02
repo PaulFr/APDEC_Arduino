@@ -39,3 +39,7 @@
       _id = id;
     }
 
+    void Survey::setAvailable(boolean isAvailable){
+      _available = isAvailable;
+    }
+

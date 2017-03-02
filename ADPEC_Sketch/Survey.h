@@ -20,6 +20,7 @@ class Survey
     void setSecondChoice(String choice);
     void setSubtitle(String subtitle);
     void setId(int id);
+    void setAvailable(boolean isAvailable);
     
   private:
     boolean _available;
