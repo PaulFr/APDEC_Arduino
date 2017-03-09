@@ -31,22 +31,16 @@ void setup() {
   
   readers = new ReadersHandler();
   survey = new Survey();
-  api = new Api(*survey);
-  
-  
+  api = new Api(survey);
+
+ 
   
   pinMode(6, OUTPUT);//buzzer
   myNextion.init();
 
 
-  survey->setTitle("Qui est le plus rapide ?");
-  survey->setSubtitle("#QuivaGagner ?");
-  survey->setFirstChoice("Le lievre");
-  survey->setSecondChoice("La tortue");
-  survey->setId(1);
-  survey->setAvailable(true);
 
-  
+  api->getCurrentSurveyFromServer();
   changeQuestion();
   
 }
